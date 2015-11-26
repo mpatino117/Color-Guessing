@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+    var target;
+    var guess_input_text;
+    var guess_input;
+    var finished = false;
+    var guesses = 0;
+    var colors;
+    var randomColor;
+    function start_game() {
+        colors =["blue", "cyan", "gold", "grey", "green", "magenta", "orange", "red",
+        "white\n", "yellow\n" ];
+        randomColor = colors[Math.floor(Math.random()*colors.length)];
+        target = randomColor.toLowerCase();
+        while(!finished) {
+            guess_input_text = prompt("Welcome to my project: \n\n " + "I am thinking of one of these colors: \n\n" + colors + "Can you guess the color I am thinking of?");
+            guess_input = guess_input_text.toLowerCase();
+            guesses +=1;
+            finished = CheckGuess();}
+        }
+        function CheckGuess() {
+           if(colors.indexOf(guess_input) == -1){
+            alert("Sorry, however I dont recognize that color.\n\n" + "Please try again!");
+        }
+        if(guess_input > target) {
+            alert( " Your guess is to high try again, alphabetically ");
+            return false;
+        }
+        if(guess_input < target) {
+            alert("Your guess is to low try again, alphabetically ");
+            return false;
+        }
+        if(guess_input == target){
+            alert(" You got it! It  was" + " " + target + "." + "Your number of guess was" + guesses + ".");
+            var setBody=document.getElementsByTagName("body")[0];
+            setBody.style.background= target;
+            return true;
+        }
+    }
+    </script>
+</head>
+<body onLoad="start_game()" >
+</body>
+</html>
